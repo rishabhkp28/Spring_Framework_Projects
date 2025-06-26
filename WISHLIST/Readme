@@ -1,0 +1,25 @@
+# 🌿 Spring MVC Wishlist Application
+
+A simple Java-based **Spring MVC** web application to manage a product wishlist. Users can view, add, update, and delete products. 
+The project demonstrates core Spring concepts like Controllers, Dependency Injection, and JSP rendering.
+
+WISHLIST/
+├── src/
+│ ├── main/
+│ │ ├── java/ # Java source code (controllers, models)
+│ │ ├── resources
+│ │ └── webapp/ # JSP views and static assets (CSS, JS)
+├── README.md
+└── pom.xml
+
+
+## 🛠️ Technologies Used
+
+- **Java 8+**
+- **Spring Framework (MVC)**
+- **JSP + SERVLET + JSTL + HTML + CSS**
+- **Tomcat (Servlet Container)**
+- **Maven** (or Gradle)
+- **Eclipse IDE**
+
+---
