@@ -1,0 +1,38 @@
+# === Eclipse-specific files ===
+.classpath
+.project
+.settings/
+
+# === Maven or Gradle build directories ===
+target/
+build/
+
+# === IDE-specific ===
+*.iml
+.idea/
+*.log
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+
+# === Generated files ===
+*.war
+*.jar
+
+# === Sensitive configuration ===
+# Avoid committing files with DB passwords or secrets
+src/main/resources/application.properties
+src/main/resources/db.properties
+
+# === Webserver temp files (optional) ===
+logs/
+temp/
+
+# === Optional: Node or frontend tools (if any) ===
+node_modules/
+
+# === Ignore backup and temp files ===
+*~
+*.swp
+*.bak

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<context:component-scan base-package="SpringMVC"/>
+
+<mvc:annotation-driven/>
+<mvc:resources mapping="/resources/**" location="/resources/"/>
+<tx:annotation-driven/>
+
+
+<!-- datasource -->
+ 
+ 
+ 
+<bean class = "org.springframework.jdbc.datasource.DriverManagerDataSource" id = "dataSource">
+       <property name ="url" value = "jdbc:mysql://localhost:3306/springmvcproject"></property>
+       <property name ="driverClassName" value = "com.mysql.cj.jdbc.Driver"></property>
+       <property name ="username" value = "root3"></property>
+       <property name ="password" value = "ecfeqiqkpsq"></property>
+ </bean>
+      
+      
+<!-- sessionfactory -->
+
+<bean class = "org.springframework.orm.hibernate5.LocalSessionFactoryBean" name = "factory">
+<!-- datasource -->
+<property name = "dataSource" ref = "dataSource"></property>
+<!-- annotated class -->
+<property name="annotatedClasses">
+        <list>
+            <value>SpringMVC.Model.Product</value>
+        </list>
+    </property>
+<!-- hibernate dependencies -->
+<property name="hibernateProperties">
+        <props>
+            <prop key="hibernate.dialect">org.hibernate.dialect.MySQL57Dialect</prop>
+            <prop key="hibernate.show_sql">true</prop>
+            <prop key="hibernate.hbm2ddl.auto">update</prop>
+        </props>
+    </property>
+
+
+</bean>
+
+
+
+<!--  hibernateTemplate-->
+
+<bean class = "org.springframework.orm.hibernate5.HibernateTemplate" name = "template">
+<property name = "sessionFactory" ref = "factory"></property>
+</bean>
+
+
+<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    <property name="sessionFactory" ref="factory"/>
+</bean>
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <constructor-arg value="/WEB-INF/Views/" type="String"/>
+    <constructor-arg value=".jsp" type="String"/>
+</bean>
+
+
+</beans>
