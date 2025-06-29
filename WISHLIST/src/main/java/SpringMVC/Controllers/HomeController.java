@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,8 +48,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path = "/handleproduct" , method = RequestMethod.POST)
-	public RedirectView handleProduct(@ModelAttribute("product") Product p,HttpServletRequest hsr)
+	public RedirectView handleProduct(@ModelAttribute("product") Product p, HttpServletRequest hsr)
 	{
+		
 		 Product existing = sp.read(p.getId());
 		    if (existing != null) {
 		        sp.update(p);
@@ -57,7 +60,6 @@ public class HomeController {
 		        System.out.println("The product has been added into the database");
 		    }
 		
-		    
 		    
 		RedirectView rv = new RedirectView();
 		
@@ -84,5 +86,19 @@ public class HomeController {
 		m.addAttribute("title","WISHLIST");
 		return "HomePage";
 	}
+	
+	@ExceptionHandler(Exception.class)
+	public String handleException(Exception ex, Model model) {
+	    String userFriendlyMsg = "Something went wrong! Please check your input.";
+	    model.addAttribute("errorMessage", userFriendlyMsg);
 
+	    // Optional: include full stack trace for debugging (development only)
+	    model.addAttribute("errorDetails", ex.getMessage());
+	    return "errorPage";
+	}
+
+	
+	
+	
+	
 }

@@ -32,8 +32,8 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 <bean class = "org.springframework.jdbc.datasource.DriverManagerDataSource" id = "dataSource">
        <property name ="url" value = "jdbc:mysql://localhost:3306/springmvcproject"></property>
        <property name ="driverClassName" value = "com.mysql.cj.jdbc.Driver"></property>
-       <property name ="username" value = "<username>"></property>
-       <property name ="password" value = "<password>"></property>
+       <property name ="username" value = "root3"></property>
+       <property name ="password" value = "ecfeqiqkpsq"></property>
  </bean>
       
       
